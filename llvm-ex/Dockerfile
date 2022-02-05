@@ -30,6 +30,6 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     wget https://apt.llvm.org/llvm.sh &&  \
     chmod +x llvm.sh &&  \
     ./llvm.sh ${LLVM_VERSION} && \
-    apt install -y libomp-${LLVM_VERSION}-dev && \
+    apt install -y libomp-${LLVM_VERSION}-dev libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools && \
     rm llvm.sh &&  \
     rm -rf /var/lib/apt/lists/*
