@@ -1,4 +1,4 @@
-name: Build CUDA LLVM
+name: Build LLVM
 
 on:
   workflow_dispatch:
