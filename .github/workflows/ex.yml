@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DOCKER_HUB_NAMESPACE: jackaltsai
+  DOCKER_HUB_NAMESPACE: jackalcooper
 
 jobs:
   build_img:
