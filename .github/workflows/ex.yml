@@ -42,7 +42,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      - name: Get Release Version
+        run: |
+          RELEASE_DATE = $(curl https://apt.llvm.org/focal/dists/llvm-toolchain-focal-14/Release | grep 'Date' )
+          echo "RELEASE_DATE=${RELEASE_DATE}" >> $GITHUB_ENV
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -52,6 +55,7 @@ jobs:
           push: true
           tags: |
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
+            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:${{ env.RELEASE_DATE }}
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:${{ github.sha }}
           cache-from: type=registry,ref=${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
           cache-to: type=inline
@@ -59,3 +63,4 @@ jobs:
           build-args: |
             BASE_IMAGE
             LLVM_VERSION
+            RELEASE_DATE

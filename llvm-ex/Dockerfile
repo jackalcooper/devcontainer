@@ -22,6 +22,8 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
 
 FROM dev-base as devcontainer-llvm
 ARG LLVM_VERSION=14
+ARG RELEASE_DATE
+ENV RELEASE_DATE=${RELEASE_DATE}
 WORKDIR /workspace
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     apt-get update && apt-get install -y --no-install-recommends \
