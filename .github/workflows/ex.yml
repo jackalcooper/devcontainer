@@ -28,7 +28,7 @@ jobs:
         tag-suffix: ["llvm14_elixir"]
         include:
           - tag-suffix: "llvm14_elixir"
-            BASE_IMAGE: "elixir:1.9.4"
+            BASE_IMAGE: "elixir:latest"
             LLVM_VERSION: "14"
     env:
       DOCKER_REPO: "${{ matrix.tag-suffix }}"
