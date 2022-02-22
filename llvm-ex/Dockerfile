@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=elixir:1.9.4
+ARG BASE_IMAGE=elixir:latest
 
 FROM ${BASE_IMAGE} as dev-base
 
