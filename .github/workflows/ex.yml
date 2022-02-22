@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Get Release Version
         run: |
-          RELEASE_DATE = $(curl https://apt.llvm.org/focal/dists/llvm-toolchain-focal-14/Release | grep 'Date' )
+          RELEASE_DATE=$(curl https://apt.llvm.org/focal/dists/llvm-toolchain-focal-14/Release | grep 'Date' )
           echo "RELEASE_DATE=${RELEASE_DATE}" >> $GITHUB_ENV
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
