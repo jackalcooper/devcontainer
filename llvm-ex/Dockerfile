@@ -18,6 +18,9 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     gdb \
     cmake \
     ninja-build && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh &&  \
     ./llvm.sh ${LLVM_VERSION} all && \
