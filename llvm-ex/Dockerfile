@@ -12,8 +12,7 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     wget \
     curl \
     git \
-    libjpeg-dev \
-    libpng-dev && \
+    ninja-build \
     rm -rf /var/lib/apt/lists/* && \
     cd /usr/local && \
     wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0-linux-x86_64.sh && \
@@ -26,12 +25,8 @@ ARG RELEASE_DATE
 ENV RELEASE_DATE=${RELEASE_DATE}
 WORKDIR /workspace
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
-    apt-get update && apt-get install -y --no-install-recommends \
-    python3-pip python3-dev python3-setuptools python3-wheel ninja-build libopenblas-dev nasm g++ gcc autoconf automake libtool lsb-release software-properties-common \
-    gpg-agent && \
     wget https://apt.llvm.org/llvm.sh &&  \
     chmod +x llvm.sh &&  \
-    ./llvm.sh ${LLVM_VERSION} && \
-    apt install -y libomp-${LLVM_VERSION}-dev libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools && \
+    sudo ./llvm.sh ${LLVM_VERSION} all && \
     rm llvm.sh &&  \
     rm -rf /var/lib/apt/lists/*
