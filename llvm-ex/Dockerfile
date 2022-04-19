@@ -6,10 +6,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /root
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     apt-get update && apt-get install -y --no-install-recommends \
+    lsb-release wget software-properties-common \
     build-essential \
     ca-certificates \
     ccache \
-    wget \
     curl \
     git \
     gdb \
