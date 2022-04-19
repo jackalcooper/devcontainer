@@ -22,6 +22,6 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     chmod +x llvm.sh &&  \
     ./llvm.sh ${LLVM_VERSION} all && \
     rm llvm.sh &&  \
-    apt-get install libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools && \
+    apt-get install -y libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools && \
     rm -rf /var/lib/apt/lists/* && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y
