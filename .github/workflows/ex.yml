@@ -25,11 +25,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tag-suffix: ["llvm14_elixir"]
+        tag-suffix: ["llvm14_elixir", "llvm15_elixir"]
         include:
           - tag-suffix: "llvm14_elixir"
             BASE_IMAGE: "elixir:latest"
             LLVM_VERSION: "14"
+          - tag-suffix: "llvm15_elixir"
+            BASE_IMAGE: "elixir:latest"
+            LLVM_VERSION: "15"
     env:
       DOCKER_REPO: "${{ matrix.tag-suffix }}"
       BASE_IMAGE: "${{ matrix.BASE_IMAGE }}"

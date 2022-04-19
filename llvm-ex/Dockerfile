@@ -27,7 +27,7 @@ ENV RELEASE_DATE=${RELEASE_DATE}
 WORKDIR /workspace
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     apt-get update && apt-get install -y --no-install-recommends \
-    python3-pip python3-dev python3-setuptools python3-wheel ninja-build libopenblas-dev nasm g++ gcc autoconf automake libtool lsb-release software-properties-common \
+    ninja-build libopenblas-dev nasm g++ gcc autoconf automake libtool lsb-release software-properties-common \
     gpg-agent && \
     wget https://apt.llvm.org/llvm.sh &&  \
     chmod +x llvm.sh &&  \
