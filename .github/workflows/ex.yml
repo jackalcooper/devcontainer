@@ -29,7 +29,7 @@ jobs:
         LLVM_VERSION: ["14", "15"]
     env:
       DOCKER_REPO: "elixir-llvm-${{ matrix.platform }}"
-      BASE_IMAGE: "${{ matrix.BASE_IMAGE }}"
+      BASE_IMAGE: "elixir:latest"
       LLVM_VERSION: "${{ matrix.LLVM_VERSION }}"
     steps:
       - name: Checkout
