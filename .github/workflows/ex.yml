@@ -58,23 +58,7 @@ jobs:
       - name: Build and push (arm64)
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/arm64
-          push: true
-          tags: |
-            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
-            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:${{ env.RELEASE_DATE }}
-            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:${{ github.sha }}
-          cache-from: type=registry,ref=${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
-          cache-to: type=inline
-          context: ./llvm-ex
-          build-args: |
-            BASE_IMAGE
-            LLVM_VERSION
-            RELEASE_DATE
-
-      - name: Build and push (amd64)
-        uses: docker/build-push-action@v2
-        with:
+          platforms: linux/arm64,linux/amd64
           push: true
           tags: |
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest

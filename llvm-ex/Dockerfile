@@ -24,4 +24,5 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     rm llvm.sh &&  \
     apt-get install -y libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools && \
     rm -rf /var/lib/apt/lists/* && \
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    rustup +nightly component add rust-analyzer-preview
