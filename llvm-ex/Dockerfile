@@ -19,4 +19,5 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     chmod +x llvm.sh &&  \
     ./llvm.sh ${LLVM_VERSION} all && \
     rm llvm.sh &&  \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
