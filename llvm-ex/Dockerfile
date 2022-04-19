@@ -28,6 +28,6 @@ WORKDIR /workspace
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     wget https://apt.llvm.org/llvm.sh &&  \
     chmod +x llvm.sh &&  \
-    sudo ./llvm.sh ${LLVM_VERSION} all && \
+    ./llvm.sh ${LLVM_VERSION} all && \
     rm llvm.sh &&  \
     rm -rf /var/lib/apt/lists/*
