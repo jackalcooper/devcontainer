@@ -13,7 +13,7 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     curl \
     git \
     gdb \
-    ninja-build \
+    ninja-build && \
     rm -rf /var/lib/apt/lists/* && \
     cd /usr/local && \
     wget https://github.com/Kitware/CMake/releases/download/v3.22.0/cmake-3.22.0-linux-x86_64.sh && \
