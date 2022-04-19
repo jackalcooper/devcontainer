@@ -12,6 +12,7 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     wget \
     curl \
     git \
+    gdb \
     ninja-build \
     rm -rf /var/lib/apt/lists/* && \
     cd /usr/local && \
