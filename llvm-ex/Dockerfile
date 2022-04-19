@@ -5,7 +5,6 @@ FROM ${BASE_IMAGE} as dev-base
 ARG LLVM_VERSION=15
 ARG RELEASE_DATE="unknown"
 ENV DEBIAN_FRONTEND=noninteractive
-ENV MET_LLVM_RELEASE_DATE=${RELEASE_DATE}
 
 WORKDIR /root
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
