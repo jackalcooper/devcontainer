@@ -2,7 +2,11 @@ ARG BASE_IMAGE=elixir:latest
 
 FROM ${BASE_IMAGE} as dev-base
 
+ARG LLVM_VERSION=15
+ARG RELEASE_DATE="unknown"
 ENV DEBIAN_FRONTEND=noninteractive
+ENV MET_LLVM_RELEASE_DATE=${RELEASE_DATE}
+
 WORKDIR /root
 RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     apt-get update && apt-get install -y --no-install-recommends \
@@ -18,7 +22,7 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh &&  \
     ./llvm.sh ${LLVM_VERSION} all && \
-    apt-get install libmlir-15-dev mlir-15-tools && \
     rm llvm.sh &&  \
+    apt-get install libmlir-${LLVM_VERSION}-dev mlir-${LLVM_VERSION}-tools && \
     rm -rf /var/lib/apt/lists/* && \
     curl https://sh.rustup.rs -sSf | sh -s -- -y
