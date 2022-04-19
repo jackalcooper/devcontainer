@@ -20,7 +20,7 @@ env:
 
 jobs:
   build_img:
-    name: Build ${{ matrix.tag-suffix }}
+    name: Build ${{ matrix.LLVM_VERSION }} ${{ matrix.platform }}
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
