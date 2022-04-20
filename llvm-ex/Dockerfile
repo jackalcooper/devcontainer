@@ -29,5 +29,5 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-    source $HOME/.cargo/env && \
+    . $HOME/.cargo/env && \
     rustup +nightly component add rust-analyzer-preview
