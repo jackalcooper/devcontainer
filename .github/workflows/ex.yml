@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: ["arm64", "amd64"]
+        platform: ["arm64", "amd64", "multi-platform"]
         LLVM_VERSION: ["14", "15"]
     env:
       DOCKER_REPO: "elixir-llvm-${{ matrix.LLVM_VERSION }}-${{ matrix.platform }}"
@@ -72,6 +72,24 @@ jobs:
         if: matrix.platform == 'amd64'
         with:
           platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
+            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:${{ env.RELEASE_DATE }}
+            ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
+          cache-to: type=inline
+          context: ./llvm-ex
+          build-args: |
+            BASE_IMAGE
+            LLVM_VERSION
+            RELEASE_DATE
+
+      - name: Build and push (multi-platform)
+        uses: docker/build-push-action@v3
+        if: matrix.platform == 'multi-platform'
+        with:
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO }}:latest
