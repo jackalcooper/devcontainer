@@ -96,8 +96,6 @@ jobs:
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO_MULTI_PLATFORM }}:latest
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO_MULTI_PLATFORM }}:${{ env.RELEASE_DATE }}
             ${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO_MULTI_PLATFORM }}:${{ github.sha }}
-          cache-from: type=registry,ref=${{ env.DOCKER_HUB_NAMESPACE }}/${{ env.DOCKER_REPO_MULTI_PLATFORM }}:latest
-          cache-to: type=inline
           context: ./llvm-ex
           build-args: |
             BASE_IMAGE
