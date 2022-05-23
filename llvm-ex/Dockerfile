@@ -7,8 +7,7 @@ ARG RELEASE_DATE="unknown"
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /root
-RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
-    apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     lsb-release wget software-properties-common \
     build-essential \
     ca-certificates \
@@ -20,8 +19,7 @@ RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
     ninja-build && \
     rm -rf /var/lib/apt/lists/*
 
-RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
-    wget https://apt.llvm.org/llvm.sh && \
+RUN wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh &&  \
     ./llvm.sh ${LLVM_VERSION} all && \
     rm llvm.sh &&  \
